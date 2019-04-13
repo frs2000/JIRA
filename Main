@@ -1,0 +1,71 @@
+package TestTask130419;
+
+import java.util.ArrayList;
+
+public class Main {
+    public static void main(String[] args) {
+        //Write below any line for the test
+        Logic logic = new Logic("jk((dh(dsasgdads)lsdgsdg)ag()sd()sde)f");        
+    }    
+}
+
+class Logic{
+    private char c1 = '(';
+    private char c2 = ')';
+    private char[] charList ; 
+    private ArrayList<Character> charArrey ;
+    
+    public Logic(String stroca ){
+        String stroc = stroca;
+        charList = new char[stroc.length()];
+        charList = stroca.toCharArray();
+        charArrey = new ArrayList<>();
+        logica();
+    }
+    
+    private void logica(){
+        char temp ;
+        for (int i = 0; i<charList.length ; i++){
+            temp = charList[i];
+            System.out.println("temp = " + temp);
+            if ( temp == c1 || temp == c2) {
+                charArrey.add(temp);
+            }
+        }        
+        System.out.println(charArrey.size());
+        System.out.println(charArrey);
+
+        
+        System.out.println("charArrey.size()%2 =" + charArrey.size()%2);
+
+        if (charArrey.size()%2 == 1 ) {
+            System.out.println("ERROR. Number of elements is not right!");
+            return;
+        }   
+
+        if (charArrey.get(0).equals(c2) || charArrey.get(charArrey.size()-1).equals(c1)) {
+            System.out.println("ERROR. Wrong first or last character!");
+            return;
+        }
+
+        int plusMinus = 0 ;
+        for (int a = 0; a<charArrey.size() ; a++){
+            if (charArrey.get(a) == c1 ) {
+                plusMinus = plusMinus +1;
+                System.out.println("plusMinus = " + plusMinus);
+            }
+            if (charArrey.get(a).equals(c2)) {
+                plusMinus = plusMinus - 1;
+                System.out.println("plusMinus = " + plusMinus);
+            }            
+        }   
+        if (plusMinus == 0){
+            System.out.println("Everything is fine!");
+            return;
+        }
+        if (plusMinus != 0){
+            System.out.println("Fatal ERROR! Not right structure!");
+            return;
+        }                
+    }
+}
